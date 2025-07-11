@@ -3,7 +3,9 @@ package br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.
 import br.com.leandroltfx.finance_control_back_spring_core.user.domain.ports.out.UserPersistencePort;
 import br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.persistence.UserRepository;
 import br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.persistence.entities.UserEntity;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserPersistenceAdapter implements UserPersistencePort {
 
     private final UserRepository userRepository;
