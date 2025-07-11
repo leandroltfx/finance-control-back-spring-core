@@ -1,12 +1,14 @@
 package br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.UUID;
 
 @Entity(name = "users")
 @Data
+@Builder
 public class UserEntity {
 
     @Id

@@ -1,0 +1,8 @@
+package br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.persistence;
+
+import br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.persistence.entities.UserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface UserRepository extends JpaRepository<UserEntity, UUID> { }
