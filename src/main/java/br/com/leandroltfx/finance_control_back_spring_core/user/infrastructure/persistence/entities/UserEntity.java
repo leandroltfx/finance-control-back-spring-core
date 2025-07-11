@@ -1,10 +1,9 @@
-package br.com.leandroltfx.finance_control_back_spring_core.infrastructure.persistence;
+package br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.UUID;
-
-import lombok.Data;
 
 @Entity(name = "users")
 @Data
