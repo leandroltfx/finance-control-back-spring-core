@@ -1,6 +1,7 @@
 package br.com.leandroltfx.finance_control_back_spring_core.shared.exceptions;
 
 import br.com.leandroltfx.finance_control_back_spring_core.shared.dtos.ApiErrorResponseDto;
+import br.com.leandroltfx.finance_control_back_spring_core.user.interfaces.web.exceptions.UserFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -28,6 +29,19 @@ public class GlobalExceptionHandle {
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError);
+    }
+
+    @ExceptionHandler(UserFoundException.class)
+    public ResponseEntity<ApiErrorResponseDto> handleUserFoundException(
+            UserFoundException userFoundException
+    ) {
+        ApiErrorResponseDto apiError = new ApiErrorResponseDto(
+                HttpStatus.UNPROCESSABLE_ENTITY.value(),
+                userFoundException.getMessage(),
+                null
+        );
+
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(apiError);
     }
 
 }

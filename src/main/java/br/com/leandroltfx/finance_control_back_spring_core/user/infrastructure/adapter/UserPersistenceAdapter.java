@@ -5,6 +5,8 @@ import br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.p
 import br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.persistence.entities.UserEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class UserPersistenceAdapter implements UserPersistencePort {
 
@@ -17,5 +19,10 @@ public class UserPersistenceAdapter implements UserPersistencePort {
     @Override
     public void save(UserEntity userEntity) {
         this.userRepository.save(userEntity);
+    }
+
+    @Override
+    public Optional<UserEntity> findUserByUserNameOrEmail(String userName, String email) {
+        return this.userRepository.findByUserNameOrEmail(userName, email);
     }
 }
