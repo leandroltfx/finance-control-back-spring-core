@@ -2,12 +2,12 @@ package br.com.leandroltfx.finance_control_back_spring_core.user.domain.ports.ou
 
 import br.com.leandroltfx.finance_control_back_spring_core.user.infrastructure.persistence.entities.UserEntity;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface UserPersistencePort {
 
     void save(UserEntity userEntity);
 
-    Optional<UserEntity> findUserByUserNameOrEmail(String userName, String email);
+    List<UserEntity> findUserByUserNameOrEmail(String userName, String email);
 
 }

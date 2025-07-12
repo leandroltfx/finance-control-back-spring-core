@@ -1,6 +1,6 @@
 package br.com.leandroltfx.finance_control_back_spring_core.shared.exceptions;
 
-import br.com.leandroltfx.finance_control_back_spring_core.shared.dtos.ApiErrorResponseDto;
+import br.com.leandroltfx.finance_control_back_spring_core.shared.dtos.ApiResponseDto;
 import br.com.leandroltfx.finance_control_back_spring_core.user.interfaces.web.exceptions.UserFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandle {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponseDto> handleMethodArgumentNotValidException(
+    public ResponseEntity<ApiResponseDto> handleMethodArgumentNotValidException(
             MethodArgumentNotValidException methodArgumentNotValidException
     ) {
         List<String> details = methodArgumentNotValidException.getBindingResult().getFieldErrors().stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
                 .collect(Collectors.toList());
 
-        ApiErrorResponseDto apiError = new ApiErrorResponseDto(
+        ApiResponseDto apiError = new ApiResponseDto(
                 HttpStatus.BAD_REQUEST.value(),
                 "Falha na validação dos campos",
                 details
@@ -32,10 +32,10 @@ public class GlobalExceptionHandle {
     }
 
     @ExceptionHandler(UserFoundException.class)
-    public ResponseEntity<ApiErrorResponseDto> handleUserFoundException(
+    public ResponseEntity<ApiResponseDto> handleUserFoundException(
             UserFoundException userFoundException
     ) {
-        ApiErrorResponseDto apiError = new ApiErrorResponseDto(
+        ApiResponseDto apiError = new ApiResponseDto(
                 HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 userFoundException.getMessage(),
                 null

@@ -1,5 +1,6 @@
 package br.com.leandroltfx.finance_control_back_spring_core.user.interfaces.web.controllers;
 
+import br.com.leandroltfx.finance_control_back_spring_core.shared.dtos.ApiResponseDto;
 import br.com.leandroltfx.finance_control_back_spring_core.user.application.usecases.RegisterUserUseCase;
 import br.com.leandroltfx.finance_control_back_spring_core.user.interfaces.web.dtos.RegisterUserRequestDto;
 import br.com.leandroltfx.finance_control_back_spring_core.user.interfaces.web.mappers.UserMapper;
@@ -26,7 +27,12 @@ public class UserController {
             @Valid @RequestBody RegisterUserRequestDto registerUserRequestDto
     ) {
         this.registerUserUseCase.execute(UserMapper.toDomain(registerUserRequestDto));
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        ApiResponseDto apiResponseDto = new ApiResponseDto(
+                HttpStatus.CREATED.value(),
+                "Usuário cadastrado com sucesso!",
+                null
+        );
+        return ResponseEntity.status(HttpStatus.CREATED).body(apiResponseDto);
     }
 
 }

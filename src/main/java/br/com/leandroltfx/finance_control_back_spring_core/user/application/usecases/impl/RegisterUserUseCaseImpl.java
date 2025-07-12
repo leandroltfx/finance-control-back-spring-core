@@ -17,11 +17,9 @@ public class RegisterUserUseCaseImpl implements RegisterUserUseCase {
 
     @Override
     public void execute(UserEntity userEntity) {
-        this.userPersistencePort
-                .findUserByUserNameOrEmail(userEntity.getUserName(), userEntity.getEmail())
-                .ifPresent((UserEntity user) -> {
-                    throw new UserFoundException("Nome de usuário e/ou e-mail já cadastrados");
-                });
+        if (!this.userPersistencePort.findUserByUserNameOrEmail(userEntity.getUserName(), userEntity.getEmail()).isEmpty()) {
+            throw new UserFoundException("Nome de usuário e/ou e-mail já cadastrados");
+        }
         this.userPersistencePort.save(userEntity);
     }
 

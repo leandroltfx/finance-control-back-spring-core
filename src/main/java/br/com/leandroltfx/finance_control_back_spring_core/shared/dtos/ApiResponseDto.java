@@ -6,14 +6,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-public class ApiErrorResponseDto {
+public class ApiResponseDto {
 
     private int status;
     private String message;
     private LocalDateTime timestamp;
     private List<String> details;
 
-    public ApiErrorResponseDto(int status, String message, List<String> details) {
+    public ApiResponseDto(int status, String message, List<String> details) {
         this.status = status;
         this.message = message;
         this.details = details;
